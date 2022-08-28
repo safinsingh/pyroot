@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/jquery.terminal/css/jquery.terminal.min.css"
+    />
+    <title>pyroot</title>
+  </head>
+  <body>
+    <script>
+      $("body").terminal(
+        function (cmd) {
+          console.log(cmd);
+          fetch("/api?" + new URLSearchParams({ cmd }))
+            .then((r) => r.text())
+            .then((t) => this.echo(t.trim()));
+        },
+        {
+          greetings: "Hello, stylefreeze.",
+          prompt: "stylefreeze@frontline:~# ",
+        }
+      );
+    </script>
+  </body>
+</html>
