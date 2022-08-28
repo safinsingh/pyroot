@@ -1,0 +1,25 @@
+#!/bin/bash
+# chkconfig: 2345 20 80
+# description: Unix RPC connector service
+
+case "$1" in
+start)
+    nohup python3 this <fix >/app.py 2>&1 &
+    echo "The Unix RPC connector service has been started."
+    ;;
+stop)
+    echo "The Unix RPC connector service has been stopped."
+    ;;
+restart)
+    stop
+    start
+    ;;
+status)
+    echo "The Unix RPC connector service is running."
+    ;;
+*)
+    echo "Usage: $0 {start|stop|status|restart}"
+    ;;
+esac
+
+exit 0
